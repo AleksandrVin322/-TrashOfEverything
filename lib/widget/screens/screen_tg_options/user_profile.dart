@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_pet_project/widget/my_style_widget/my_app_bar_lessons.dart';
+import 'package:my_first_pet_project/widget/my_style_widget/my_floating_action_button_info.dart';
 
 class UserProfile extends StatelessWidget {
   final List<MenuRowData> firstMenuRow = const [
@@ -27,6 +28,8 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: const MyFloatingActionButtonInfo(
+          text: 'Просто верстка страницы настроек ТГ'),
       backgroundColor: const Color.fromARGB(206, 158, 158, 158),
       appBar: const MyAppBarLessons(text: 'Options'),
       body: Container(
