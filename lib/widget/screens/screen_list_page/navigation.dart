@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_pet_project/widget/my_style_widget/my_app_bar_pages.dart';
 import 'package:my_first_pet_project/widget/my_style_widget/text_button_navigation_page.dart';
-import 'package:my_first_pet_project/widget/screens/screen_test.dart/my_multi_child_layout_delegate.dart';
+import 'package:my_first_pet_project/widget/screens/multu_child_layout_delegate/my_multi_child_layout_delegate.dart';
 import 'package:my_first_pet_project/widget/screens/screen_tg_options/tg_options.dart';
+import 'package:my_first_pet_project/widget/screens/single_child_scroll_view/single_child_scroll_view.dart';
 
 class NavigationScreenList extends StatelessWidget {
   const NavigationScreenList({super.key});
@@ -34,8 +35,12 @@ class NavigationScreenList extends StatelessWidget {
               ),
             ),
             TextButtonNavigation(
-              text: 'Lesson 3 (NIHUYA)',
-              func: () => {},
+              text: 'SingleChildScrollView',
+              func: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const MySingleChildScrollView(),
+                ),
+              ),
             ),
             TextButtonNavigation(
               text: 'Lesson 4 (NIHUYA)',
