@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_pet_project/widget/my_style_widget/my_app_bar_pages.dart';
 import 'package:my_first_pet_project/widget/my_style_widget/text_button_navigation_page.dart';
+import 'package:my_first_pet_project/widget/screens/buttons/buttons.dart';
 import 'package:my_first_pet_project/widget/screens/list_view/my_list_view.dart';
 import 'package:my_first_pet_project/widget/screens/multu_child_layout_delegate/my_multi_child_layout_delegate.dart';
 import 'package:my_first_pet_project/widget/screens/screen_tg_options/tg_options.dart';
@@ -52,8 +53,12 @@ class NavigationScreenList extends StatelessWidget {
               ),
             ),
             TextButtonNavigation(
-              text: 'Lesson 5 (NIHUYA)',
-              func: () => {},
+              text: 'Buttons',
+              func: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const Buttons(),
+                ),
+              ),
             ),
             TextButtonNavigation(
               text: 'Lesson 6 (NIHUYA)',
