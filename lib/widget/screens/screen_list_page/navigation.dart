@@ -6,6 +6,7 @@ import 'package:my_first_pet_project/widget/screens/list_view/my_list_view.dart'
 import 'package:my_first_pet_project/widget/screens/multu_child_layout_delegate/my_multi_child_layout_delegate.dart';
 import 'package:my_first_pet_project/widget/screens/screen_tg_options/tg_options.dart';
 import 'package:my_first_pet_project/widget/screens/single_child_scroll_view/single_child_scroll_view.dart';
+import 'package:my_first_pet_project/widget/screens/the_movie_db/the_movie_db.dart';
 
 class NavigationScreenList extends StatelessWidget {
   const NavigationScreenList({super.key});
@@ -61,8 +62,12 @@ class NavigationScreenList extends StatelessWidget {
               ),
             ),
             TextButtonNavigation(
-              text: 'Lesson 6 (NIHUYA)',
-              func: () => {},
+              text: 'TheMovieDB',
+              func: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const TheMovieDb(),
+                ),
+              ),
             ),
             TextButtonNavigation(
               text: 'Lesson 7 (NIHUYA)',
