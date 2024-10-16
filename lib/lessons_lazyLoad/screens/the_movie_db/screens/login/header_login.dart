@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_pet_project/lessons_lazyLoad/screens/the_movie_db/widgets/auth_form.dart';
+import 'package:my_first_pet_project/lessons_lazyLoad/screens/the_movie_db/screens/login/auth_form.dart';
 
 class HeaderLogin extends StatelessWidget {
   final String text1 =

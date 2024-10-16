@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_pet_project/lessons_lazyLoad/screens/the_movie_db/screens/login/login_screen.dart';
 
 class TheMovieDb extends StatelessWidget {
   const TheMovieDb({super.key});
@@ -21,7 +22,15 @@ class TheMovieDb extends StatelessWidget {
             ),
           ],
         ),
-        body: Container(),
+        body: Center(
+          child: TextButton(
+            onPressed: () => {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const LoginScreen()))
+            },
+            child: const Text('LoginScreen'),
+          ),
+        ),
       ),
     );
   }
