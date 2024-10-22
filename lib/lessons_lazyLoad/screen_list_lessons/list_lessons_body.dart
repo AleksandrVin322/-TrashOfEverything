@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_pet_project/lessons_lazyLoad/screens/add_images/add_images.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screens/buttons/buttons.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screens/list_view/my_list_view.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screens/multi_child_layout_delegate/my_multi_child_layout_delegate.dart';
@@ -76,6 +77,14 @@ class ListLessonsBody extends StatelessWidget {
               func: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const MyTextField(),
+                ),
+              ),
+            ),
+            TextButtonNavigation(
+              text: 'AddImages',
+              func: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const AddImages(),
                 ),
               ),
             ),
