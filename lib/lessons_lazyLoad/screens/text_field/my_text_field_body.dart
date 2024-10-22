@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:my_first_pet_project/my_general_widgets/my_app_bar_lessons.dart';
 
-class MyTextFieldBody extends StatelessWidget {
+class MyTextFieldBody extends StatefulWidget {
   const MyTextFieldBody({super.key});
+
+  @override
+  State<MyTextFieldBody> createState() => _MyTextFieldBodyState();
+}
+
+class _MyTextFieldBodyState extends State<MyTextFieldBody> {
+  void _onChange(String text) {
+    print('$text');
+  }
+
+  void _onSubmitted(String text) {
+    print('Сохраняем данные и отправляем на сервер: $text');
+  }
+
+  final controllerOne = TextEditingController(text: '981 741 52 43');
+  final controllerTwo = TextEditingController(text: 'hui centrirovani');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const MyAppBarLessons(text: 'TextField'),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
             children: [
+              const SizedBox(height: 50),
               TextField(
                 decoration: InputDecoration(
                   suffixIcon: const Icon(Icons.pregnant_woman_rounded),
@@ -59,10 +78,91 @@ class MyTextFieldBody extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 50),
+              const Divider(color: Colors.black),
+              const Center(
+                  child: Text('Дальше разбор второй и третьей части урока')),
+              const SizedBox(height: 50),
+              const TextField(
+                readOnly: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                onChanged: _onChange,
+                onSubmitted: _onSubmitted,
+                keyboardAppearance: Brightness.dark, //не робит
+                textInputAction: TextInputAction.send,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                maxLength: 13,
+                inputFormatters: [PhoneInputFormatter()],
+                controller: controllerOne,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.phone),
+                  prefixText: '+7 ',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: controllerTwo,
+                textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class PhoneInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final digitsOnly = newValue.text.replaceAll(RegExp(r'[^\d]+'), '');
+    final initialSpecialSymbolCount = newValue.selection
+        .textBefore(newValue.text)
+        .replaceAll(RegExp(r'[\d]+'), '')
+        .length;
+    var cursosPosition = newValue.selection.start - initialSpecialSymbolCount;
+    var finalCursosPosition = cursosPosition;
+    final digitsOnlyChars = digitsOnly.split('');
+
+    if (oldValue.selection.textInside(oldValue.text) == ' ') {
+      //не работает
+      digitsOnlyChars.removeAt(cursosPosition - 1);
+      finalCursosPosition -= 2;
+    }
+
+    var newString = <String>[];
+    for (int i = 0; i < digitsOnlyChars.length; i++) {
+      if (i == 3 || i == 6 || i == 8) {
+        newString.add(' ');
+        newString.add(digitsOnlyChars[i]);
+        if (i <= cursosPosition) finalCursosPosition++;
+      } else {
+        newString.add(digitsOnlyChars[i]);
+      }
+    }
+    final resultString = newString.join();
+    return TextEditingValue(
+      text: resultString,
+      selection: TextSelection.collapsed(offset: finalCursosPosition),
     );
   }
 }
