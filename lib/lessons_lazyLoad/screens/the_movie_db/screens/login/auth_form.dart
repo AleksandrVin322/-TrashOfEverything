@@ -18,6 +18,7 @@ class _AuthFormState extends State<AuthForm> {
     if (login == 'admin' && password == 'admin') {
       errorText = null;
       print('open app');
+      Navigator.of(context).pushReplacementNamed('/main_the_movie_db');
     } else {
       errorText = 'Неправильный логин или пароль';
       print('error');
