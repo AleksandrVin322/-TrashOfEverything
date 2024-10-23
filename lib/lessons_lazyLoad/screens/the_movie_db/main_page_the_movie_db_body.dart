@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_pet_project/lessons_lazyLoad/screens/the_movie_db/screens/films/films_widget.dart';
 
 class MainPageTheMovieDbBody extends StatefulWidget {
   const MainPageTheMovieDbBody({super.key});
@@ -19,7 +20,7 @@ class _MainPageTheMovieDbBodyState extends State<MainPageTheMovieDbBody> {
 
   static const List<Widget> _widgetOptions = [
     Text('News'),
-    Text('Films'),
+    FilmsWidget(),
     Text('Series'),
   ];
 
