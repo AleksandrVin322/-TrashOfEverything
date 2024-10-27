@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_pet_project/calculator/calculator.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screen_list_lessons/screen_list_lessons.dart';
 import 'package:my_first_pet_project/my_general_widgets/text_button_navigation_page.dart';
 
@@ -17,6 +18,13 @@ class MainPageListApps extends StatelessWidget {
             func: () => {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const ScreenListLessons()))
+            },
+          ),
+          TextButtonNavigation(
+            text: 'Calculator',
+            func: () => {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const Calculator()))
             },
           ),
         ],
