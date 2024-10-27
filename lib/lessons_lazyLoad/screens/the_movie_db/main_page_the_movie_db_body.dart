@@ -18,12 +18,6 @@ class _MainPageTheMovieDbBodyState extends State<MainPageTheMovieDbBody> {
     });
   }
 
-  static const List<Widget> _widgetOptions = [
-    Text('News'),
-    FilmsWidget(),
-    Text('Series'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,8 +56,13 @@ class _MainPageTheMovieDbBodyState extends State<MainPageTheMovieDbBody> {
             ),
           ],
         ),
-        body: Center(
-          child: _widgetOptions[_selectedPage],
+        body: IndexedStack(
+          index: _selectedPage,
+          children: const [
+            Text('News'),
+            FilmsWidget(),
+            Text('Series'),
+          ],
         ));
   }
 }

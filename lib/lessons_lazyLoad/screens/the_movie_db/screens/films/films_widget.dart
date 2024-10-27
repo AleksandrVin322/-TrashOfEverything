@@ -15,7 +15,14 @@ class Movie {
   });
 }
 
-class FilmsWidget extends StatelessWidget {
+class FilmsWidget extends StatefulWidget {
+  const FilmsWidget({super.key});
+
+  @override
+  State<FilmsWidget> createState() => _FilmsWidgetState();
+}
+
+class _FilmsWidgetState extends State<FilmsWidget> {
   final _movies = const [
     Movie(
       imageName: Image(image: AppImages.filmHorror),
@@ -74,17 +81,42 @@ class FilmsWidget extends StatelessWidget {
           'Двое детей, оставленных своими родителями справлять Хэллоуин с подругой их матери, находят в мешке с конфетами старую видеокассету. На кассете записан очень странный фильм ужасов.',
     ),
   ];
-  const FilmsWidget({super.key});
+
+  var _filteredMovies = <Movie>[];
+
+  final _searchController = TextEditingController();
+
+  void _searchMovies() {
+    final query = _searchController.text;
+    if (query.isNotEmpty) {
+      _filteredMovies = _movies
+          .where((Movie movie) =>
+              movie.title.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    } else {
+      _filteredMovies = _movies;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredMovies = _movies;
+    _searchController.addListener(_searchMovies);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         ListView.builder(
-          itemCount: _movies.length,
+          padding: const EdgeInsets.only(top: 70),
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          itemCount: _filteredMovies.length,
           itemExtent: 180,
           itemBuilder: (BuildContext context, int index) {
-            final movie = _movies[index];
+            final movie = _filteredMovies[index];
             return Padding(
               padding: const EdgeInsets.all(10.0),
               child: Stack(
@@ -158,6 +190,7 @@ class FilmsWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10),
           child: TextField(
+            controller: _searchController,
             decoration: InputDecoration(
               labelText: 'Поиск',
               border: const OutlineInputBorder(),
