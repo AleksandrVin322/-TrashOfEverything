@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screens/add_images/add_images.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screens/buttons/buttons.dart';
+import 'package:my_first_pet_project/lessons_lazyLoad/screens/custom_paint/my_custom_paint.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screens/list_view/my_list_view.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screens/multi_child_layout_delegate/my_multi_child_layout_delegate.dart';
 import 'package:my_first_pet_project/lessons_lazyLoad/screens/options_tg/tg_options.dart';
@@ -65,7 +66,7 @@ class ListLessonsBody extends StatelessWidget {
               ),
             ),
             TextButtonNavigation(
-              text: 'TheMovieDB',
+              text: 'TheMovieDB (big project)',
               func: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const TheMovieDb(),
@@ -85,6 +86,14 @@ class ListLessonsBody extends StatelessWidget {
               func: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const AddImages(),
+                ),
+              ),
+            ),
+            TextButtonNavigation(
+              text: 'MyCustomPaint',
+              func: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const MyCustomPaint(),
                 ),
               ),
             ),
